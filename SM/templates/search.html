@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Stubble management</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static',filename='search.css') }}">
+        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <div class = "main-container">
+            <!-- input record -->
+            <div class = "record-input">
+                <h2>Industry information</h2>
+                <div class = "entry-form" >
+                    <form method="POST" action="/validate_search">
+
+                        <label for = "name">  Type of stubble</label>
+                        <input type = "text" id = "name" name="name">
+                        <label for = "place">  place</label>
+                        <input type = "text" id = "place" name="place">
+                        <input type="submit" id="search-btn" value="search" name="search">
+
+
+
+
+                    </form>
+
+                    <!-- alert message -->
+                    <span class = "message"></span>
+
+                    <div class = "input-btns">
+                        <!-- <button type = "button" id = "search-btn">
+                            <span>
+                                <i class = "fas fa-search"></i>
+                            </span> Search
+                        </button> -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- display record -->
+            <div class = "record-display">
+                <button type = "button" id = "home-btn">
+                    <a href="{{ url_for('frontp')}}" class="u-btn u-button-style u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">HOME</a>
+                </button>
+                <h2>Want to increase your income? </h2>
+                <!-- reset btn -->
+
+
+               <div class = "record-container">
+                    {% if info_data!=0 %}
+                        {% for i in range(length) %}
+                    <div class = "record-item">
+                        <div class = "record-el">
+                            <span id = "labelling"> Industry Name: </span>
+                            <span id = "contact-id-content">{{ info_data['industryname'][i] }}</span>
+                        </div>
+
+                         <div class = "record-el">
+                            <span id = "labelling">Industry Address: </span>
+                            <span id = "name-content">{{ info_data['industryplace'][i] }}</span>
+                        </div>
+
+                        <div class = "record-el">
+                            <span id = "labelling">Industrial Standard Metrics: </span>
+                            <span id = "name-content">{{ info_data['quantity'][i] }}</span>
+                        </div>
+
+                        <div class = "record-el">
+                            <span id = "labelling">Price: </span>
+                            <span id = "name-content">{{ info_data['price'][i] }}</span>
+                        </div>
+                        <div class = "record-el">
+                            <button type = "button" id = "register-btn">
+                            <a href="{{ url_for('registartion')}}" class="u-btn u-button-style u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">REGISTER</a>
+                            </button>
+                        </div>
+
+
+
+
+                    </div>
+                    {% endfor %}
+                   {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+        <!-- JS file -->
+        <script src = "{{ url_for('static',filename='search.js')}}"></script>
+    </body>
+</html>
